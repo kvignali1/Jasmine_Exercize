@@ -1,14 +1,17 @@
-describe("Servers test", function() {
-  it('should add a new server to allServers on submitServerInfo()', function () {
-    expect(allServers).toBeTruthy();
-    expect(Object.keys(allServers).length).toEqual(1);
-    expect(allServers['server' + serverId].serverName).toEqual('Alice');
-  });
-  it('update Server table with serverName', function () {
-    expect(curServer).toBeTruthy();
-  })
+describe("Servers test", function () {
+	beforeEach(function () {
+		serverNameInput.value = "Kevin";
+	});
+	it("should add a new server to allServers on submitServerInfo()", function () {
+		submitServerInfo();
+		expect(Object.keys(allServers).length).toEqual(1);
+		expect(allServers["server" + serverId].serverName).toEqual("Kevin");
+	});
+	afterEach(function () {
+		allServers = {};
+		serverTbody.innerHTML = "";
+	});
 });
-
 
 // // create server object and add to allServers, update html and reset input
 // function submitServerInfo(evt) {
@@ -25,22 +28,3 @@ describe("Servers test", function() {
 //     serverNameInput.value = '';
 //   }
 // }
-
-// Create table row element and pass to appendTd function with input value
-function updateServerTable() {
-  serverTbody.innerHTML = '';
-
-  for (let key in allServers) {
-    let curServer = allServers[key];
-
-    let newTr = document.createElement('tr');
-    newTr.setAttribute('id', key);
-
-    let tipAverage = sumPaymentTotal('tipAmt') / Object.keys(allServers).length;
-
-    appendTd(newTr, curServer.serverName);
-    appendTd(newTr, '$' + tipAverage.toFixed(2));
-
-    serverTbody.append(newTr);
-  }
-}
