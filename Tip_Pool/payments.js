@@ -57,7 +57,7 @@ function appendPaymentTable(curPayment) {
 	appendTd(newTr, curPayment.tipPercent + "%");
 	appendTd(
 		newTr.addEventListener("click", (e) => {
-			console.log("I Have Been Clicked");
+			console.log("This is the last time Ill try to make this code work");
 		}),
 		"X"
 	);
